@@ -1,9 +1,9 @@
-const countryInfoContainer = document.querySelector('.country-info');
+const countryInfo = document.querySelector('.country-info');
 const newBtn = document.getElementById('new-btn');
-async function fetchCountryInfo() {
-  const response = await fetch('https://restcountries.com/v3.1/all');
-    if (response.ok) {
-      const data = await response.json();
+async function getCountryInfo() {
+  const url = await fetch('https://restcountries.com/v3.1/all');
+    if (url.ok) {
+      const data = await url.json();
       const randomIndex = Math.floor(Math.random() * data.length);
       const randomCountry = data[randomIndex];
 
@@ -23,12 +23,12 @@ async function fetchCountryInfo() {
       `;
 
       // Update the HTML container with the country information
-      countryInfoContainer.innerHTML = htmlTemplate;
+      countryInfo.innerHTML = htmlTemplate;
     } 
     else {
-      countryInfoContainer.innerHTML = 'Failed to fetch country information.';
+      countryInfo.innerHTML = 'Failed to fetch country information.';
     }
 }
 
-newBtn.addEventListener('click', fetchCountryInfo);
-fetchCountryInfo()
+newBtn.addEventListener('click', getCountryInfo);
+getCountryInfo()
