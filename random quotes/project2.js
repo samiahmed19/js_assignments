@@ -1,11 +1,11 @@
 const quoters = document.querySelector('.quote');
 const quoteBtn = document.getElementById('new-quote-btn');
 
-async function fetchRandomQuote() {
+async function getRandomQuote() {
   try {
-    const response = await fetch('https://type.fit/api/quotes');
-    if (response.ok) {
-      const data = await response.json();
+    const url = await fetch('https://type.fit/api/quotes');
+    if (url.ok) {
+      const data = await url.json();
       const randomIndex = Math.floor(Math.random() * data.length);
       const randomQuote = data[randomIndex];
       quoters.innerHTML = `
@@ -21,5 +21,5 @@ async function fetchRandomQuote() {
     quoters.innerHTML = 'An error occurred while fetching a quote.';
   }
 }
-quoteBtn.addEventListener('click', fetchRandomQuote);
-fetchRandomQuote();
+quoteBtn.addEventListener('click', getRandomQuote);
+getRandomQuote();
